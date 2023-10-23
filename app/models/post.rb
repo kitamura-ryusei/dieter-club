@@ -3,10 +3,11 @@ class Post < ApplicationRecord
       belongs_to :customer
       
       def get_image
-            if image.attached?
-                  image
-            else
-                  '1560031.jpg'
-            end
+        unless image.attached?
+          file_path = Rails.root.join('app/assets/images/1560031.jpg')
+          image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+        end
+         image
       end
+
 end
