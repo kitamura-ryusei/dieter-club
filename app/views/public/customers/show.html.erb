@@ -1,5 +1,16 @@
-<% @posts.each do |post| %>
+<!--ユーザー情報-->
 
+<div>
+    <%= image_tag @customer.get_profile_image(100,100) %>
+    <h3><%= @customer.name %></h3>
+    <h3><%= @customer.gender %></h3>
+    <h3><%= @customer.weight %></h3>
+    <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+</div>
+
+<!--ユーザーの投稿一覧-->
+
+<% @posts.each do |post| %>
 <div>
     <%= link_to post_path(post.id) do %> 
       <%= image_tag post.get_image %>
@@ -9,5 +20,4 @@
     <p>ユーザーネーム:<%= post.customer.name %></p>
     <p><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></p>
 </div>
-
 <% end %>
