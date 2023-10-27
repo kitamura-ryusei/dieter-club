@@ -1,4 +1,16 @@
 <h1>新規投稿フォーム</h1>
+
+<!--バリデーションによるエラーメッセージの表示-->
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました。
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!--新規投稿機能-->
 <%= form_with model: @post do |f| %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
