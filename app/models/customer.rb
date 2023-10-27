@@ -16,5 +16,16 @@ class Customer < ApplicationRecord
       end
       profile_image.variant(resize_to_limit: [width, height]).processed
     end
+    
+    # ゲストログインのための記述
+    def self.guest
+      find_or_create_by!(email: 'guest@example.com') do |customer|
+        customer.password = SecureRandom.urlsafe_base64
+        customer.name = 'ゲスト'
+        customer.gender = '男性'
+        customer.height = '170'
+        customer.weight = '63'
+      end
+    end
 
 end

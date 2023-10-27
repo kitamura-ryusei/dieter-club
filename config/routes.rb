@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
+  # namespace :public do
+  #   get 'customers/show'
+  #   get 'customers/edit'
+  # end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
   
   scope module: :public do
   root to: "homes#top"
@@ -19,13 +23,9 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
     resources :customers, only: [:show, :edit, :update]
-    # get 'customers/my_page' => 'customers#show'
-    # get 'customers/information/edit' => 'customers#edit'
-    # patch 'customers/informaiton' => 'customers#update'
     get 'customers/confirm' => 'customers#confirm'
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :comments, only: [:create]
-    # resources :favorites, only: [:create, :destroy]
   end
   
   namespace :admin do
