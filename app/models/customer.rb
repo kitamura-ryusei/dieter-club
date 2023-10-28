@@ -23,7 +23,7 @@ class Customer < ApplicationRecord
         customer.password = SecureRandom.urlsafe_base64
         customer.name = 'guest'
         customer.gender = '男性'
-        customer.height = '170'
+        customer.height = '171'
         customer.weight = '63'
       end
     end
