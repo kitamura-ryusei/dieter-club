@@ -1,6 +1,7 @@
 <!--投稿詳細の表示-->
 <div>
   <%= image_tag @post.get_image %>
+  <!--AI機能-->
 <div class="tag-box">
 <% @post.tags.each do |tag| %>
   <span class="label"><%= tag.name %></span>
