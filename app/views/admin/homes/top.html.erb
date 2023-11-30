@@ -1,0 +1,16 @@
+<h3>登録者一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+        <th>アカウント名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |order| %>
+      <td><u><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M/%S'), admin_order_path(order.id) %></u></td>
+       <td><%= order.customer.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

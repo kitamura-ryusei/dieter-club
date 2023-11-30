@@ -27,5 +27,10 @@ class Customer < ApplicationRecord
         customer.weight = '63'
       end
     end
+    
+    # 下記はログイン時に退会ずみのユーザーが同じアカウントでログインできないようにする記載
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 
 end

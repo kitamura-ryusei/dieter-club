@@ -11,8 +11,8 @@ class Public::PostsController < ApplicationController
         if @post.save
           tags.each do |tag|
             @post.tags.create(name: tag)
-        end
-            redirect_to posts_path
+          end
+        redirect_to posts_path
         else
             render :new
         end
